@@ -1,0 +1,20 @@
+ -------------------------------------------------------
+|               Fonctionnelent de 'randomscheduler'     |
+ -------------------------------------------------------
+
+
+La fonction 'randomscheduler' prend en paramètre la liste des processus prêt (ready) ansi que la liste de tous les autres processus (proc) et un pointeur de type entier (delta). 
+
+
+Cette fonction commence par stocker la taille de la liste des processus prêts dans une variable de type entier (length), et séléctionner aléatoirement le numéro d'un processus dans cette liste (seleted) utilisant la fonction rand() (rand()%len(ready)).
+
+ 
+Ensuite elle récupère la liste des processus, cette dernière contient un nombre de processus égal à 'selected'.
+
+
+Puis elle choisit aléatoirement le nombre d’unités de temps restant pour que le processus sera exécuté et le stock dans le pointeur delta (*delta = rand()%p->proc->remaining + 1).
+
+Et en fin elle retourne un pointeur qui pointe sur ce processus.
+
+
+
