@@ -1,16 +1,11 @@
 \documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[francais]{babel}
 \usepackage{rtsched}
 \usepackage{fullpage}
 \usepackage{color}
 \usepackage{listings}
 
-\author{LAKSIR Rida}
-
 \lstset{ %
-language=C, 
+language=C,                % choose the language of the code
 belowcaptionskip=1\baselineskip,
 breaklines=true,
 frame=L,
@@ -22,28 +17,10 @@ keywordstyle=\bfseries\color{green!40!black},
 commentstyle=\itshape\color{purple!40!black},
 identifierstyle=\color{black},
 stringstyle=\color{orange},
-numbers=left,
+numbers=left,                   % where to put the line-numbers
 }
 
-\title{TD 6: Ordonnancement}
-
 \begin{document}
-\maketitle
-
-\section{FCFS}
 \input{fcfs.tex}
 \lstinputlisting{fcfs.source}
-
-\section{RR}
-\input{rr.tex}
-\lstinputlisting{rr.source}
-
-\section{SJF}
-\input{sjf.tex}
-\lstinputlisting{sjf.source}
-
-\section{SRTF}
-\input{srtf.tex}
-\lstinputlisting{srtf.source}
-
 \end{document}

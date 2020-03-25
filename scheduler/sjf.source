@@ -1,0 +1,5 @@
+/* --Scheduler sjf-- */
+tproc * sjf(tlist * procs, tlist * ready, int * delta) {
+    /* FIXME: Random scheduler, replace by appropriate code */
+    return randomscheduler(procs, ready, delta);
+}
