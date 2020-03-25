@@ -1,10 +1,3 @@
-/* --Scheduler fcfs-- */
-
-/* --Scheduler rr-- */
-tproc * rr(tlist * procs, tlist * ready, int * delta) {
-    /* FIXME: Random scheduler, replace by appropriate code */
-    return randomscheduler(procs, ready, delta);
-}
 /* --Scheduler rr-- */
 
 /* --Scheduler sjf-- */

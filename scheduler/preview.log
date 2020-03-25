@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.3.7)  25 MAR 2020 21:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.3.7)  25 MAR 2020 23:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -283,7 +283,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 \c@lstlisting=\count135
 
-(./fcfs.tex
+(./rr.tex
 LaTeX Font Info:    Try loading font information for T1+phv on input line 1.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -293,28 +293,28 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 1.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 12--24
+Underfull \hbox (badness 10000) in paragraph at lines 27--24
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--24
+Underfull \hbox (badness 10000) in paragraph at lines 27--24
 
  []
 
-(./fcfs.source
+(./rr.source
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2.
 ) [1
 
 ] (./preview.aux) ) 
 Here is how much of TeX's memory you used:
- 9390 strings out of 492610
- 161909 string characters out of 6131489
- 453338 words of memory out of 5000000
- 13238 multiletter control sequences out of 15000+600000
+ 9396 strings out of 492610
+ 161947 string characters out of 6131489
+ 481338 words of memory out of 5000000
+ 13244 multiletter control sequences out of 15000+600000
  5712 words of font info for 17 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,5n,72p,433b,1142s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,5n,72p,433b,1148s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on preview.dvi (1 page, 16796 bytes).
+Output written on preview.dvi (1 page, 27212 bytes).

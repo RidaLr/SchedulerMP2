@@ -45,15 +45,22 @@ tproc * fcfs(tlist * procs, tlist * ready, int * delta) {
     /* FIXED : first come first served */
     /* Chose the first ready process in ready tlist*/
     tnode* chosen=ready->first;
-    *delta=chosen->proc->remaining; // how much time is left
+    *delta = chosen->proc->remaining; // how much time is left
     return chosen->proc;
 }
 /* --Scheduler fcfs-- */
 
 /* --Scheduler rr-- */
 tproc * rr(tlist * procs, tlist * ready, int * delta) {
-    /* FIXME: Random scheduler, replace by appropriate code */
-    return randomscheduler(procs, ready, delta);
+    /* FIXED : Round-Robin */
+    // Time quantum
+    int quantum = 1;
+    tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
+    tproc * chosenP = chosen->proc;   /* The chosen process*/
+    del(ready,chosenP); /*  Remove the process chosenP from the list "ready" */
+	add(procs,chosenP); /* Add the procces into the end of procs list */
+    *delta = quantum; // time quantum 
+    return  chosenP;
 }
 /* --Scheduler rr-- */
 
