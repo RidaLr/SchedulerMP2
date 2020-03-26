@@ -1,6 +1,9 @@
-/* --Scheduler sjf-- */
-tproc * sjf(tlist * procs, tlist * ready, int * delta) {
-    /* FIXED Shortest Job First */
+/* --Scheduler srtf-- */
+tproc * srtf(tlist * procs, tlist * ready, int * delta) {
+    /* FIXED Shortest remaining time first */
+   
+   // Time quantum
+    int quantum = 1;
     
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
     tnode * smallest =  ready->first; /* Process with the smallest execution time*/
@@ -10,13 +13,12 @@ tproc * sjf(tlist * procs, tlist * ready, int * delta) {
         /* Selects for execution the waiting process with the smallest execution time */
 		if((chosen->proc->remaining) < (smallest->proc->remaining))
         {
-            
 		 	smallest = chosen;
         }
 		chosen = chosen->next;
 	}
 
-    *delta = smallest->proc->remaining;      
+    *delta = quantum;      
     
     return smallest->proc;
 }
