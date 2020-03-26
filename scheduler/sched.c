@@ -55,26 +55,47 @@ tproc * rr(tlist * procs, tlist * ready, int * delta) {
     /* FIXED : Round-Robin */
     // Time quantum
     int quantum = 1;
+    
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
     tproc * chosenP = chosen->proc;   /* The chosen process*/
+    
     del(ready,chosenP); /*  Remove the process chosenP from the list "ready" */
 	add(procs,chosenP); /* Add the procces into the end of procs list */
-    *delta = quantum; // time quantum 
+    
+    *delta = quantum; 
+
     return  chosenP;
 }
 /* --Scheduler rr-- */
 
 /* --Scheduler sjf-- */
 tproc * sjf(tlist * procs, tlist * ready, int * delta) {
-    /* FIXME: Random scheduler, replace by appropriate code */
-    return randomscheduler(procs, ready, delta);
+    /* FIXED Shortest Job First */
+    
+    tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
+    tnode * smallest =  ready->first; /* Process with the smallest execution time*/
+    /*  Find process with minimum remaining time at every single time lap */
+    while(chosen != NULL)
+    {
+        /* Selects for execution the waiting process with the smallest execution time */
+		if((chosen->proc->remaining) < (smallest->proc->remaining))
+        {
+            
+		 	smallest = chosen;
+        }
+		chosen = chosen->next;
+	}
+
+    *delta = smallest->proc->remaining;      
+    
+    return smallest->proc;
 }
 /* --Scheduler sjf-- */
 
 /* --Scheduler srtf-- */
 tproc * srtf(tlist * procs, tlist * ready, int * delta) {
     /* FIXME: Random scheduler, replace by appropriate code */
-    return randomscheduler(procs, ready, delta);
+   
 }
 /* --Scheduler srtf-- */
 
