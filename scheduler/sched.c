@@ -73,22 +73,22 @@ tproc * sjf(tlist * procs, tlist * ready, int * delta) {
     /* FIXED Shortest Job First */
     
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
-    tnode * smallest =  ready->first; /* Process with the smallest execution time*/
+    tnode * sortestP =  ready->first; /* Process with the smallest execution time*/
     /*  Find process with minimum remaining time at every single time lap */
     while(chosen != NULL)
     {
-        /* Selects for execution the waiting process with the smallest execution time */
-		if((chosen->proc->remaining) < (smallest->proc->remaining))
+        /* Selects for execution the waiting process with the shortest execution time */
+		if((chosen->proc->remaining) < (sortestP->proc->remaining))
         {
             
-		 	smallest = chosen;
+		 	sortestP = chosen; /* The process that will be executed*/
         }
-		chosen = chosen->next;
+		chosen = chosen->next;  /* Chose the next process */
 	}
 
-    *delta = smallest->proc->remaining;      
+    *delta = sortestP->proc->remaining;      
     
-    return smallest->proc;
+    return sortestP->proc;
 }
 /* --Scheduler sjf-- */
 
@@ -100,21 +100,21 @@ tproc * srtf(tlist * procs, tlist * ready, int * delta) {
     int quantum = 1;
     
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
-    tnode * smallest =  ready->first; /* Process with the smallest execution time*/
+    tnode * shortestP =  ready->first; /* Process with the smallest execution time*/
     /*  Find process with minimum remaining time at every single time lap */
     while(chosen != NULL)
     {
         /* Selects for execution the waiting process with the smallest execution time */
-		if((chosen->proc->remaining) < (smallest->proc->remaining))
+		if((chosen->proc->remaining) < (shortestP->proc->remaining))
         {
-		 	smallest = chosen;
+		 	shortestP = chosen;
         }
 		chosen = chosen->next;
 	}
 
     *delta = quantum;      
     
-    return smallest->proc;
+    return shortestP->proc;
 }
 /* --Scheduler srtf-- */
 
@@ -168,10 +168,10 @@ void simulate(int max_time) {
                /* Calculate response time */
             if (proc->remaining == proc->length) 
             {
+                /* The moment when we activate the thread - the moment when the thread start the execution*/
 				stats.response += time - proc->activation;
-
 			}
-            
+
             /* Advance time by delta */
             time += delta;
 
@@ -185,8 +185,11 @@ void simulate(int max_time) {
             if (proc->remaining <= 0) {
                 del(&ready, proc);
                 del(&procs, proc);
+                /* Completion time = the time when process arrives to the ends of execution - the activation time */
                 stats.completion += time - proc->activation;
-                
+                /* Waiting time = the time when process arrives to the ends of execution - the length of the process 
+                - the activation time */
+                stats.waiting += time - proc->length - proc->activation;
             }
         } 
         /* If no process is ready, just advance the simulation timer */

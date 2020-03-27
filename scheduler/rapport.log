@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.3.7)  27 MAR 2020 15:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.3.7)  27 MAR 2020 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -416,12 +416,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--47
 
 (./srtf.source [4]) [5] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 10997 strings out of 492610
- 183966 string characters out of 6131489
- 516679 words of memory out of 5000000
- 14782 multiletter control sequences out of 15000+600000
+ 10999 strings out of 492610
+ 183994 string characters out of 6131489
+ 518679 words of memory out of 5000000
+ 14784 multiletter control sequences out of 15000+600000
  12578 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,6n,72p,433b,1586s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on rapport.dvi (5 pages, 92976 bytes).
+Output written on rapport.dvi (5 pages, 94296 bytes).

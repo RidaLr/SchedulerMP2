@@ -6,19 +6,19 @@ tproc * srtf(tlist * procs, tlist * ready, int * delta) {
     int quantum = 1;
     
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
-    tnode * smallest =  ready->first; /* Process with the smallest execution time*/
+    tnode * shortestP =  ready->first; /* Process with the smallest execution time*/
     /*  Find process with minimum remaining time at every single time lap */
     while(chosen != NULL)
     {
         /* Selects for execution the waiting process with the smallest execution time */
-		if((chosen->proc->remaining) < (smallest->proc->remaining))
+		if((chosen->proc->remaining) < (shortestP->proc->remaining))
         {
-		 	smallest = chosen;
+		 	shortestP = chosen;
         }
 		chosen = chosen->next;
 	}
 
     *delta = quantum;      
     
-    return smallest->proc;
+    return shortestP->proc;
 }
