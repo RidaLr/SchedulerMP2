@@ -162,17 +162,24 @@ void simulate(int max_time) {
             /* Ensure the scheduler has advanced at least one unit of time */
             assert(delta > 0);
 
-
-
             /* Output task execution */
             printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
 
+               /* Calculate response time */
+            if (proc->remaining == proc->length) 
+            {
+				stats.response += time - proc->activation;
+
+			}
+            
             /* Advance time by delta */
             time += delta;
 
             /* Remove delta from chosen process */
             proc->remaining-=delta;
  
+          
+
             /* If the process remaining time is less zero or less, 
              * delete it */ 
             if (proc->remaining <= 0) {
