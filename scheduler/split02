@@ -44,6 +44,8 @@ void simulate(int max_time) {
             /* Ensure the scheduler has advanced at least one unit of time */
             assert(delta > 0);
 
+
+
             /* Output task execution */
             printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
 
@@ -58,6 +60,8 @@ void simulate(int max_time) {
             if (proc->remaining <= 0) {
                 del(&ready, proc);
                 del(&procs, proc);
+                stats.completion += time - proc->activation;
+                
             }
         } 
         /* If no process is ready, just advance the simulation timer */

@@ -3,10 +3,14 @@ tproc * rr(tlist * procs, tlist * ready, int * delta) {
     /* FIXED : Round-Robin */
     // Time quantum
     int quantum = 1;
+    
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
     tproc * chosenP = chosen->proc;   /* The chosen process*/
+    
     del(ready,chosenP); /*  Remove the process chosenP from the list "ready" */
 	add(procs,chosenP); /* Add the procces into the end of procs list */
-    *delta = quantum; // time quantum 
+    
+    *delta = quantum; 
+
     return  chosenP;
 }
