@@ -1,0 +1,3 @@
+Toutes les propriétés decrites en cours dont vérifiées , j'ai utilisé les formules vus en cours pour calculer les temps (réponse, attente, completion).
+
+J'ai vérifié aussi les résultats et j'ai trouvé les mêmes dans le cours.
