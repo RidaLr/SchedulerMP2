@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{rtsched}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{listings}
+
+\author{LAKSIR Rida}
+
+\lstset{ %
+language=C, 
+belowcaptionskip=1\baselineskip,
+breaklines=true,
+frame=L,
+xleftmargin=\parindent,
+language=C,
+showstringspaces=false,
+basicstyle=\ttfamily,
+keywordstyle=\bfseries\color{green!40!black},
+commentstyle=\itshape\color{purple!40!black},
+identifierstyle=\color{black},
+stringstyle=\color{orange},
+numbers=left,
+}
+
+\title{T7: Ordonnancement TR}
+
+\begin{document}
+\maketitle
+
+\section{RM}
+\input{rm.tex}
+\lstinputlisting{rm.source}
+\section{EDF}
+\input{edf.tex}
+\lstinputlisting{edf.source}
+
+\end{document}
