@@ -190,6 +190,14 @@ void simulate(int max_time) {
                 /* Waiting time = the time when process arrives to the ends of execution - the length of the process 
                 - the activation time */
                 stats.waiting += time - proc->length - proc->activation;
+
+                /* Manage the periodique process */
+                if(proc->period)  // If the period of the process different to 0
+                {
+                	proc->activation+=proc->period; //We update his activation time
+					proc->remaining=proc->length;  // And his remaining time
+					add(&procs,proc);             // And we add this process to the tasks list
+                }
             }
         } 
         /* If no process is ready, just advance the simulation timer */
