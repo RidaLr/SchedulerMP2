@@ -147,7 +147,32 @@ tproc * edf(tlist * procs, tlist * ready, int * delta) {
 }
 /* --Scheduler edf-- */
 
+/* --Scheduler rm-- */
+tproc * rm(tlist * procs, tlist * ready, int * delta) {
+    /* FIXED Rate-monotonic scheduling */
+    
+    int quantum = 1;
+    
+    tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
+    tproc * earliestP =  chosen->proc; /* Process with the earliest deadline */
+    /*  Find process with the earliest deadline */
+    while(chosen != NULL)
+    {
+        
+        /* Selects for execution the process with the earliest deadline */
+		if( (chosen->proc->period ) < (earliestP->period ))
+        {
+		 	earliestP = chosen->proc;
+        }
+        
+		chosen = chosen->next;
+	}
 
+    *delta = quantum;      
+    
+    return earliestP;
+}
+/* --Scheduler rm-- */
 
 /* List of ready procs */
 tlist ready;
@@ -194,12 +219,8 @@ void simulate(int max_time) {
             assert(delta > 0);
 
             /* Output task execution */
-            //printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
-            
-            if (time+delta < proc->activation + proc-> period)
-            	printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
-			else
-				printf("\\TaskExecution[color=red]{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+            printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+          
 
 
                /* Calculate response time */
@@ -271,7 +292,9 @@ int main(int argc, char * argv[]) {
     else if (strcmp(method, "edf") == 0) {
         scheduler = edf;
     } 
-   
+    else if (strcmp(method, "rm") == 0) {
+        scheduler = rm;
+    }
     else {
         usage();
     }
