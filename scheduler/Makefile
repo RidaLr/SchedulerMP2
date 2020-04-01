@@ -33,10 +33,11 @@ rapport: fcfs.tex rr.tex sjf.tex srtf.tex fcfs.source rr.source \
 	dvips rapport.dvi -f > rapport.ps
 	evince rapport.ps
 
+
 rapport_tr: rm.tex rm.source edf.tex edf.source
-    latex rapport_tr.tex
-    dvips rapport_tr.dvi -f > rapport_tr.ps
-    evince rapport_tr.ps
+			latex rapport_tr.tex
+			dvips rapport_tr.dvi -f > rapport_tr.ps
+			evince rapport_tr.ps
 
 clean:
-	rm -f sched *.o rr.tex fcfs.tex sjf.tex srtf.tex *.source split* preview.tex *.aux *.ps *.dvi *.log
+	rm -f sched *.o rr.tex fcfs.tex sjf.tex srtf.tex edf.tex rm.tex *.source split* preview.tex *.aux *.ps *.dvi *.log

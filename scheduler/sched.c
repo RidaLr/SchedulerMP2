@@ -118,6 +118,37 @@ tproc * srtf(tlist * procs, tlist * ready, int * delta) {
 }
 /* --Scheduler srtf-- */
 
+
+/* --Scheduler edf-- */
+tproc * edf(tlist * procs, tlist * ready, int * delta) {
+    /* FIXED Earliest deadline first scheduling */
+
+    
+    int quantum = 1;
+    
+    tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
+    tproc * earliestP =  chosen->proc; /* Process with the earliest deadline */
+    /*  Find process with the earliest deadline */
+    while(chosen != NULL)
+    {
+        
+        /* Selects for execution the process with the earliest deadline */
+		if( ((chosen->proc->period + chosen->proc->activation)) < ((earliestP->period + earliestP->activation)))
+        {
+		 	earliestP = chosen->proc;
+        }
+
+		chosen = chosen->next;
+	}
+
+    *delta = quantum;      
+    
+    return earliestP;
+}
+/* --Scheduler edf-- */
+
+
+
 /* List of ready procs */
 tlist ready;
 
@@ -132,13 +163,13 @@ tstats stats = {0} ;
 
 /* display usage message */
 void usage() {
-    fail("usage: sched [fcfs, rr, sjf, srtf]\n");
+    fail("usage: sched [fcfs, rr, sjf, srtf, edf, rm]\n");
 }
 
 /* simulate a single core scheduler, from time 0 to `max_time` */
 void simulate(int max_time) {
     int time=0;
-    while(time <= max_time) {
+    while(time < max_time) {
         /* Activate process */
         for (tnode * p = procs.first; p != NULL;) {
             tproc * proc = p->proc; 
@@ -163,7 +194,13 @@ void simulate(int max_time) {
             assert(delta > 0);
 
             /* Output task execution */
-            printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+            //printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+            
+            if (time+delta < proc->activation + proc-> period)
+            	printf("\\TaskExecution{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+			else
+				printf("\\TaskExecution[color=red]{%d}{%d}{%d}\n", proc->pid, time, time+delta);
+
 
                /* Calculate response time */
             if (proc->remaining == proc->length) 
@@ -194,8 +231,8 @@ void simulate(int max_time) {
                 /* Manage the periodique process */
                 if(proc->period)  // If the period of the process different to 0
                 {
-                	proc->activation+=proc->period; //We update his activation time
-					proc->remaining=proc->length;  // And his remaining time
+                	proc->activation += proc->period; //We update his activation time
+					proc->remaining = proc->length;  // And his remaining time
 					add(&procs,proc);             // And we add this process to the tasks list
                 }
             }
@@ -218,7 +255,7 @@ int main(int argc, char * argv[]) {
 
     char * method = argv[1]; 
 
-    /* The sched argument should be one of fcfs, rr, sjf, srtf */
+    /* The sched argument should be one of fcfs, rr, sjf, srtf, edf, rm */
     if (strcmp(method, "fcfs") == 0) {
         scheduler = fcfs;
     } 
@@ -231,6 +268,10 @@ int main(int argc, char * argv[]) {
     else if (strcmp(method, "srtf") == 0) {
         scheduler = srtf;
     } 
+    else if (strcmp(method, "edf") == 0) {
+        scheduler = edf;
+    } 
+   
     else {
         usage();
     }
@@ -246,9 +287,16 @@ int main(int argc, char * argv[]) {
     /* Output RTGrid header */
     printf("\\begin{RTGrid}[width=0.8\\textwidth]{%d}{%d}\n", len(&procs), max_time);
 
+   
     /* Output task arrivals for all tasks */ 
-    for (tnode * p = procs.first; p != NULL; p = p->next) {
-        printf("\\TaskArrival{%d}{%d}\n", p->proc->pid, p->proc->activation); 
+    
+    for (tnode *p = procs.first; p != NULL; p = p->next) {
+        int n = p->proc->activation;
+        while (p->proc->period && n < max_time)
+        {
+            printf("\\TaskArrival{%d}{%d}\n", p->proc->pid, n); 
+            n += p->proc->period;
+        }
     }
 
     /* Start scheduling simulation */
