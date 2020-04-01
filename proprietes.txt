@@ -1,3 +1,26 @@
-Toutes les propriétés decrites en cours dont vérifiées , j'ai utilisé les formules vus en cours pour calculer les temps (réponse, attente, completion).
+Toutes les propriétés decrites en cours sont vérifiées , j'ai utilisé les formules vus en cours pour calculer les temps (réponse, attente, completion).
 
 J'ai vérifié aussi les résultats et j'ai trouvé les mêmes dans le cours.
+
+FCFS : 
+  -Completion :43
+  -Response   :23
+  -Waiting    :23
+
+SJF : 
+  -Completion :38
+  -Response   :18
+  -Waiting    :18
+
+SRTF : 
+  -Completion :36
+  -Response   :16
+  -Waiting    :10
+
+RR : 
+  -Completion :54
+  -Response   :4
+  -Waiting    :34
+
+
+Je constate que l'ordonnanceur (SJF et QRTF) sont optimaux pour le temps d'attente, et l'ordonnanceur RR est optimal pour le temps de réponse.

@@ -155,11 +155,12 @@ tproc * rm(tlist * procs, tlist * ready, int * delta) {
     
     tnode * chosen = ready->first; /* Chose the first ready process in ready tlist*/
     tproc * earliestP =  chosen->proc; /* Process with the earliest deadline */
-    /*  Find process with the earliest deadline */
+    /*  Find The task with the higher the frequency,
+        It’s always the highest priority task that gets executed first.*/
     while(chosen != NULL)
     {
         
-        /* Selects for execution the process with the earliest deadline */
+      
 		if( (chosen->proc->period ) < (earliestP->period ))
         {
 		 	earliestP = chosen->proc;
